@@ -15,15 +15,20 @@ public class GraphMain {
 	 */
 	public DirectedGraph transitiveClosure(DirectedGraph G) {
 		ArrayList<Edge> transitiveEdges = new ArrayList<Edge>();
+		//A list of the new edges
 		for(int i =0; i < G.getEdgeList().size(); i++) {
 			for(int j = 0; j < G.getEdgeList().size(); j++) {
 				if(G.getEdgeList().get(j).start.equals(G.getEdgeList().get(i).end)) {
+					//if the start of one edge is the same as the end of another edge
 					transitiveEdges.add(new Edge(G.getEdgeList().get(i).start, G.getEdgeList().get(j).end));
+					//add a new edge from the start of one to the end of other to the list
 				}
 			}
 		}
 		G.edgeList.addAll(transitiveEdges);
+		//add all the new created edges
 		G.removeDuplicates();
+		//delete any duplicate edges
 		return G;
 	}
 	/**
